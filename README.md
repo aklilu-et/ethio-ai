@@ -33,3 +33,12 @@ Gemma 3 (4B–8B)	Google's own terms	Comparison candidate
 3. Two-speaker transcription
 
 Separates conversations between two people before transcribing:
+audio → who spoke when (pyannote Community-1) → split overlapping voices (SpeechBrain SepFormer) → ASR → labeled transcript
+
+The Fidel-only rule
+Output alphabet: the speech model's vocabulary contains only Fidel characters, Ethiopic punctuation (። ፣ ፡), the word separator, and the language tags. It cannot produce Latin letters.
+Training data: any transcript or document containing Latin-script Ethiopian text is rejected, not converted.
+Oromo, Sidaama and Wolaytta text comes only from our own Fidel-transcribed recordings.
+Spelling standard: every language follows a written standard in standards/ covering long vowels, doubled consonants, and sounds Amharic Fidel lacks.
+Numbers are written as Fidel words (ሃያ ሁለት, not 22).
+Automatic check: every transcript is tested against the allowed alphabet before training. Anything outside it is rejected.
